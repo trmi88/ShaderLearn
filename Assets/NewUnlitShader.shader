@@ -21,7 +21,7 @@ Shader "Unlit/NewUnlitShader"
                 float4 vertex : POSITION;
                 float2 uv0 : TEXCOORD0;
                 float2 uv1 : TEXCOORD1;
-                float3 normals: NORMAL;
+                   float3 normals: NORMAL;
             };
 
             struct Interpolators
@@ -40,7 +40,7 @@ Shader "Unlit/NewUnlitShader"
                 Interpolators o;
 
                 UNITY_INITIALIZE_OUTPUT(Interpolators, o);
-
+                
                 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.normal = UnityObjectToWorldNormal(v.normals);
