@@ -1,12 +1,23 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "Unlit/NewUnlitShader"
 {
     Properties
     {
         _ColorA("Color", Color) = (1,1,1,1)
+                _ColorB("Color", Color) = (1,1,1,1)
+                _float1("float1", Range(0,1)) = 1
+
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+      //  Tags { "RenderType"="Opaque" }
+
+// for transparent
+
+Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+ Blend SrcAlpha OneMinusSrcAlpha
+
 
         Pass
         {
@@ -15,16 +26,14 @@ Shader "Unlit/NewUnlitShader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-
 #define PI 3.1415926
-
 
             struct MeshData
             {
                 float4 vertex : POSITION;
                 float2 uv0 : TEXCOORD0;
                 float2 uv1 : TEXCOORD1;
-                   float3 normals: NORMAL;
+                float3 normals: NORMAL;
             };
 
             struct Interpolators
@@ -32,10 +41,14 @@ Shader "Unlit/NewUnlitShader"
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0; //mean not the same in MeshData
                 float3 normal: TEXCOORD1;
+    float4 fragPos : TEXCOORD2;
+
 
             };
 
-            float4 _Color;
+            float4 _ColorA;
+            float4 _ColorB;
+            float _float1;
 
 
             Interpolators vert (MeshData v)
@@ -43,39 +56,56 @@ Shader "Unlit/NewUnlitShader"
                 Interpolators o;
 
                 UNITY_INITIALIZE_OUTPUT(Interpolators, o);
-                
-                
+
+                float4 tempVertex = UnityObjectToClipPos(v.vertex);
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
+
+                // o.vertex = float4(tempVertex.xxx,1);
+                // o.vertex = float4(tempVertex.x, tempVertex.y, tempVertex.z,1);
+
                 o.normal = UnityObjectToWorldNormal(v.normals);
                 o.uv = v.uv0;
-                // o.uv = v.uv1;
+    o.fragPos = mul (UNITY_MATRIX_MV, v.vertex);
+
+               // o.uv = v.uv1;
 
                 return o;
             }
+
              float random (float2 uv)
             {
                 return frac(sin(dot(uv,float2(12.9898,78.233)))*43758.5453123);
             }
 
+            float func1(float f)
+            {
+                return frac(abs(sin(2*f)-cos(f)));
+            }
+
+                float func2(float f)
+            {
+                return frac(abs(f*f*f - 3*f*f + 9*f + 0.5));
+            }
+
+// spiral
+float func3(float f){
+    return frac(5 * f * cos(f * 2 * PI));
+}
+
             float4 frag (Interpolators i) : SV_Target
             {
-                // return float4(i.normal.xxx,1); //normal la ve huong anh sang
-                // return float4(i.uv.xy, i.uv.x*2,1); //uv = UV mapping is the process of projecting a 2D image onto the mesh of a 3D object to give it shape, detail and texture
-                //UV mapping = which texture for Mesh = UV coordinates =  texture coordinates
-                // float r = 
-                // return float4(i.uv,0,1);
-//float f = abs(frac(i.uv * 5) * 2 - 1);
+//return func3(i.uv);
 
-//float f = cos(i.uv);
-//float f = i.uv;
-//float f = cos(i.uv* 2 * PI * 5) * 0.5 + 0.5;
-//return f;
 
-//spriral r*x* cos(x)
-float f = i.uv;
-float s = frac(5 * f * cos(f * 2 * PI));
-return s;
-                return float4(i.uv.xxx,1);
+float dist2 = distance(float2(0.5,0.5), i.uv);
+const float maxDist = sqrt(2)/2;
+
+    float4 returnColor = lerp(_ColorA,_ColorB,func3(dist2/maxDist));
+return returnColor;
+
+
+
             }
             ENDCG
         }

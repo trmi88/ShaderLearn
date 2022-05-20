@@ -25,6 +25,7 @@ Shader "Unlit/NewUnlitShader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+#define PI 3.1415926
 
             struct MeshData
             {
@@ -66,7 +67,7 @@ Shader "Unlit/NewUnlitShader"
                 o.uv = v.uv0;
     o.fragPos = mul (UNITY_MATRIX_MV, v.vertex);
 
-                // o.uv = v.uv1;
+               // o.uv = v.uv1;
 
                 return o;
             }
@@ -86,6 +87,11 @@ Shader "Unlit/NewUnlitShader"
                 return frac(abs(f*f*f - 3*f*f + 9*f + 0.5));
             }
 
+// spiral
+float func3(float f){
+    return frac(5 * f * cos(f * 2 * PI));
+}
+
             float4 frag (Interpolators i) : SV_Target
             {
                 // float t = random(i.uv) >_float1? func1(i.uv.x) : func2(i.uv.x);
@@ -104,7 +110,11 @@ if (dist > _float1){
 } else {
    // return float4 (0,1,0,1);
 }
+//return float4(i.uv,0,1);
+       //         return float4(i.normal,1);
 
+
+//center using UV0
 //black 0 0 0 1
 //yellow1 1 0 1
 //center 0.5 0.5 0 1
