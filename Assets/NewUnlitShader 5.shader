@@ -6,10 +6,10 @@ Shader "Unlit/NewUnlitShader"
     {
         _ColorA("Color", Color) = (1,1,1,1)
                 _ColorB("Color", Color) = (1,1,1,1)
-                _float1("float1", Range(0,100)) = 1
                 _baseRadius("baseRadius", Range(0,1)) = 1
-                _elapsedTime("elapsedTime", float) = 0
-                _float2("float2", Range(0,100)) = 1
+                _rAngleSpeed("rAngleSpeed", Range(0,1)) = 1
+                _elapsedTime("elapsedTime", float) = 1
+
 
 
     }
@@ -52,10 +52,9 @@ Shader "Unlit/NewUnlitShader"
 
             float4 _ColorA;
             float4 _ColorB;
-            float _float1;
             float _baseRadius;
+            float _rAngleSpeed;
             float _elapsedTime;
-            float _float2;
 
 
             Interpolators vert (MeshData v)
@@ -121,20 +120,38 @@ Shader "Unlit/NewUnlitShader"
                 const float maxDist = sqrt(2)/2;
                 const float duration = 5;
 
+                const float distancePerTurn = 0.1;
+
                 //radius continuous update based on factor, choose factor depend on distance
-                //approach nay KHONG tao spiral vi factor = nhau giua cac diem doi xung > nen van la doi xung
-             //   float factor = dist;
-             //   float maxFactor = dist/maxDist;
-             //   float rContinuous = _baseRadius * (1 + factor/maxFactor) ;
+                //radius up based on factors:
+                //1. radius speed acclerator (fixed per angle)
+                //2. angle
+                //3. distance to center
 
-                //approach 2: rContinuous ~ based on time, not distance > van bi doi xung vi 2 diem doi xung van co t bang nhau
-                //spiral khong doi xung
+                float rContinuous = _baseRadius;
+         //       rContinuous += _rDistanceSpeed * frac(dist/maxDist);
 
-               // float rContinuous = _baseRadius * cos(_elapsedTime * _float1 / 100 + 0.05)  ;
+              //  _rAngleSpeed += cos(_elapsedTime  / 2)  / 10 ;
 
-                float rContinuous = _baseRadius * (_elapsedTime * _float1 / 100 ) * cos( angle * _float2 / 100)  ;
 
-                float t = frac(dist / rContinuous);
+                //calculate turn
+                float turn = _elapsedTime / distancePerTurn;
+                rContinuous += turn * _rAngleSpeed;
+
+                float angleAdjust = angle / PI * 2;
+                if (angleAdjust > 0){ //0 > 2 => 2 goc phan tu dau
+
+                   rContinuous += _rAngleSpeed * angleAdjust;
+                } else { //-1.9999 > -0.00001 => 2 goc phan tu sau => speed da tang duoc 2 goc phan tu dau va tang them nua
+                    float angleAdjust2 = 2 - abs(angleAdjust);
+                    rContinuous += _rAngleSpeed * (2 + angleAdjust2);
+                }
+
+                
+               
+
+               // float t = frac(dist / rContinuous);
+                float t = frac(dist - rContinuous);
 
                 float4 returnColor = lerp(_ColorA,_ColorB,t);
                 return returnColor;
