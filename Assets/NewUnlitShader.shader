@@ -16,15 +16,14 @@ Shader "Unlit/NewUnlitShader"
 
             #include "UnityCG.cginc"
 
-#define PI 3.1415926
-
+            #define PI 3.1415926
 
             struct MeshData
             {
                 float4 vertex : POSITION;
                 float2 uv0 : TEXCOORD0;
                 float2 uv1 : TEXCOORD1;
-                   float3 normals: NORMAL;
+                float3 normals: NORMAL;
             };
 
             struct Interpolators
@@ -41,42 +40,29 @@ Shader "Unlit/NewUnlitShader"
             Interpolators vert (MeshData v)
             {
                 Interpolators o;
-
                 UNITY_INITIALIZE_OUTPUT(Interpolators, o);
-                
-                
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.normal = UnityObjectToWorldNormal(v.normals);
                 o.uv = v.uv0;
-                // o.uv = v.uv1;
 
                 return o;
             }
+            
+            // Utils 
              float random (float2 uv)
             {
                 return frac(sin(dot(uv,float2(12.9898,78.233)))*43758.5453123);
             }
 
+
             float4 frag (Interpolators i) : SV_Target
             {
-                // return float4(i.normal.xxx,1); //normal la ve huong anh sang
-                // return float4(i.uv.xy, i.uv.x*2,1); //uv = UV mapping is the process of projecting a 2D image onto the mesh of a 3D object to give it shape, detail and texture
-                //UV mapping = which texture for Mesh = UV coordinates =  texture coordinates
-                // float r = 
-                // return float4(i.uv,0,1);
-//float f = abs(frac(i.uv * 5) * 2 - 1);
-
-//float f = cos(i.uv);
-//float f = i.uv;
-//float f = cos(i.uv* 2 * PI * 5) * 0.5 + 0.5;
-//return f;
-
-//spriral r*x* cos(x)
-float f = i.uv;
-float s = frac(5 * f * cos(f * 2 * PI));
-return s;
-                return float4(i.uv.xxx,1);
+                float f = i.uv;
+                float s = frac(5 * f * cos(f * 2 * PI));
+                return s;
             }
+
             ENDCG
         }
     }

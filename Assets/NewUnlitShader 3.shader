@@ -6,7 +6,10 @@ Shader "Unlit/NewUnlitShader"
     {
         _ColorA("Color", Color) = (1,1,1,1)
                 _ColorB("Color", Color) = (1,1,1,1)
-                _float1("float1", Range(0,1)) = 1
+                _float1("float1", Range(0,100)) = 1
+                _baseRadius("baseRadius", Range(0,1)) = 1
+                _elapsedTime("elapsedTime", float) = 0
+
 
     }
     SubShader
@@ -49,6 +52,8 @@ Shader "Unlit/NewUnlitShader"
             float4 _ColorA;
             float4 _ColorB;
             float _float1;
+            float _baseRadius;
+            float _elapsedTime;
 
 
             Interpolators vert (MeshData v)
@@ -97,20 +102,38 @@ Shader "Unlit/NewUnlitShader"
             float4 frag (Interpolators i) : SV_Target
             {
                 
+               // return float4(0,0,1,1);
 
+               // return float4(i.uv.yyy,1);
+               //sang phai:x 0 > 1, len tren x giu nguyen
+               //sang phai:y giu nguyen, len tren y 0 > 1
 
-                //center using UV0
-                //black 0 0 0 1
-                //yellow1 1 0 1
-                //center 0.5 0.5 0 1
+                float2 center = float2(0.5,0.5);
 
-                float dist2 = distance(float2(0.5,0.5), i.uv);
+                //center 0.5 0.5
+
+                //calculate angle between center and i.uv
+                float angle = atan2(i.uv.y - center.y, i.uv.x - center.x);
+                float dist = distance(center, i.uv);
+
                 const float maxDist = sqrt(2)/2;
+                const float duration = 5;
 
-                float4 returnColor = lerp(_ColorA,_ColorB,func1(dist2/maxDist));
+                //radius continuous update based on factor, choose factor depend on distance
+                //approach nay KHONG tao spiral vi factor = nhau giua cac diem doi xung > nen van la doi xung
+             //   float factor = dist;
+             //   float maxFactor = dist/maxDist;
+             //   float rContinuous = _baseRadius * (1 + factor/maxFactor) ;
+
+                //approach 2: rContinuous ~ based on time, not distance > van bi doi xung vi 2 diem doi xung van co t bang nhau
+                //spiral khong doi xung
+
+                float rContinuous = _baseRadius * cos(_elapsedTime * _float1 / 100 + 0.05)  ;
+
+                float t = frac(dist / rContinuous);
+
+                float4 returnColor = lerp(_ColorA,_ColorB,t);
                 return returnColor;
-
-
 
             }
             ENDCG
