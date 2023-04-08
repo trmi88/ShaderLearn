@@ -11,12 +11,6 @@
         },
         {
             "m_Id": "5de338814d534fa5be3dbb663babd619"
-        },
-        {
-            "m_Id": "90d670446333415f90492297302d9509"
-        },
-        {
-            "m_Id": "bfdf8e224cf7438fbef139e9cbf7e111"
         }
     ],
     "m_Keywords": [],
@@ -849,12 +843,6 @@
         },
         {
             "m_Id": "5de338814d534fa5be3dbb663babd619"
-        },
-        {
-            "m_Id": "90d670446333415f90492297302d9509"
-        },
-        {
-            "m_Id": "bfdf8e224cf7438fbef139e9cbf7e111"
         }
     ]
 }
@@ -1305,33 +1293,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "90d670446333415f90492297302d9509",
-    "m_Guid": {
-        "m_GuidSerialized": "b2031d57-46a5-401e-bf9d-330617195a70"
-    },
-    "m_Name": "Glow Width",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Glow Width",
-    "m_DefaultReferenceName": "_Glow_Width",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 0.0,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "96eed2b5e6e64e15995c32ef67253b74",
@@ -1356,7 +1317,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AlphaClipThreshold",
     "m_StageCapability": 2,
-    "m_Value": 0.30000001192092898,
+    "m_Value": 0.019999999552965165,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -1537,35 +1498,6 @@
 }
 
 {
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "bfdf8e224cf7438fbef139e9cbf7e111",
-    "m_Guid": {
-        "m_GuidSerialized": "0ce83c7f-97b6-4123-af96-142c7c5d695c"
-    },
-    "m_Name": "Glow Color",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Glow Color",
-    "m_DefaultReferenceName": "_Glow_Color",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 1
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "c05e67c2da224b7a918444947bab4b73",
@@ -1636,7 +1568,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Metallic",
     "m_StageCapability": 2,
-    "m_Value": 0.3400000035762787,
+    "m_Value": 0.6700000166893005,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
