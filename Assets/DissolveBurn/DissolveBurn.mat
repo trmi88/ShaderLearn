@@ -36,6 +36,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaGradient:
+        m_Texture: {fileID: 2800000, guid: 133b85b79e70a4b3b8db8078a9346ffc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlphaNoise:
+        m_Texture: {fileID: 2800000, guid: 0243b2c74e9674cbda0b5e23b3ceab9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveBurnSubGraph_99d9455f6a504e6cad2f112fc8e6140c_AlphaGradient_1305903709_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0243b2c74e9674cbda0b5e23b3ceab9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 0a1243183b7b14bbf866f4cec5929b03, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -67,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 1
-    - _AlphaClipThreshold: 0
+    - _AlphaClipThreshold: 0.173
     - _AlphaToMask: 1
     - _Alpha_Clip_Threshold: 0
     - _Blend: 0
@@ -75,7 +87,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _EdgeThickness: 0.135
+    - _EdgeThickness: 0.053
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
