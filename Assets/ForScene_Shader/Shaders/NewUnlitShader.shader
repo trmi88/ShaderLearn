@@ -3,6 +3,7 @@ Shader "Unlit/NewUnlitShader"
     Properties
     {
         _ColorA("Color", Color) = (1,1,1,1)
+        _MainTex ("Example (R16)", 2D) = "black" {}
     }
     SubShader
     {
@@ -38,6 +39,7 @@ Shader "Unlit/NewUnlitShader"
             };
 
             float4 _Color;
+
 
 
             Interpolators vert (MeshData v)

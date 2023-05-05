@@ -7,6 +7,7 @@ Shader "Unlit/NewUnlitShader"
         _ColorA("Color", Color) = (1,1,1,1)
                 _ColorB("Color", Color) = (1,1,1,1)
                 _float1("float1", Range(0,1)) = 1
+                _MainTex ("Example (R16)", 2D) = "black" {}
 
     }
     SubShader
