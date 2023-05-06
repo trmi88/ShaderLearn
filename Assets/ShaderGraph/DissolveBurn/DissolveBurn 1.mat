@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 1
-    - _AlphaClipThreshold: 0.294
+    - _AlphaClipThreshold: 0
     - _AlphaToMask: 1
     - _Alpha_Clip_Threshold: 0
     - _Blend: 0
@@ -87,7 +87,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _EdgeThickness: 0.053
+    - _EdgeThickness: 0.082
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
