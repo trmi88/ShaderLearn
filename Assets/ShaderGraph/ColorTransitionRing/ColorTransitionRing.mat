@@ -41,11 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Color2Scale: 0.559
+    - _Color2Scale: 0.563
     - _ColorChangeScale: 0.304
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RingEdge: 0.135
+    - _RingEdge: 0.151
     - _ScanEdge: 0.308
     - _ScanRingEdge: 0.128
     - _ScanRingEdgeStart: 0.239
