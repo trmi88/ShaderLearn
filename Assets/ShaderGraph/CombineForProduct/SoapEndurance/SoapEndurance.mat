@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7951967502912751798
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dissolveBurnTransparent
-  m_Shader: {fileID: -6465566751694194690, guid: 0f03c66b416f04731ac4fc5036dd5f0e, type: 3}
+  m_Name: SoapEndurance
+  m_Shader: {fileID: -6465566751694194690, guid: 19f0b5387bf2d4577b99e9b4d4358b0c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -50,23 +63,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClipThreshold: 0
-    - _EdgeThickness: 0.2
+    - _Color2Scale: 1
+    - _EdgeThickness: 0.249
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RingEdge: 0
     m_Colors:
-    - _ColorMixBase: {r: 0, g: 0.36301288, b: 0.7490197, a: 1}
-    - _EdgeColor: {r: 0, g: 11.6705885, b: 23.968628, a: 1}
+    - _Color1: {r: 0, g: 0.49324083, b: 1, a: 1}
+    - _Color2: {r: 0, g: 0.87058824, b: 1, a: 1}
+    - _ColorMixBase: {r: 0, g: 0.87058824, b: 1, a: 1}
+    - _ColorRing: {r: 0, g: 18.078272, b: 67.79352, a: 1}
+    - _EdgeColor: {r: 22.200485, g: 22.200485, b: 22.200485, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &5355587989448131047
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
